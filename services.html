@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Services | Tint Tone Designs</title>
+    <meta name="description" content="Explore our retail branding and large-format print fabrication services, including storefront signage, window displays, backlit fabrics, barricades, and vinyl wraps.">
+    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Service Page Custom Layout */
+        .services-detail-section {
+            padding: 80px 0;
+        }
+        .service-detail-item {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+            margin-bottom: 120px;
+        }
+        .service-detail-item:nth-child(even) {
+            direction: rtl;
+        }
+        .service-detail-item:nth-child(even) .service-detail-content {
+            direction: ltr;
+        }
+        @media (max-width: 992px) {
+            .service-detail-item, .service-detail-item:nth-child(even) {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                margin-bottom: 80px;
+                direction: ltr;
+            }
+        }
+        .service-detail-img {
+            border-radius: var(--radius-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            background-color: var(--border-color);
+        }
+        .service-detail-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+        .service-detail-img:hover img {
+            transform: scale(1.03);
+        }
+        .service-detail-content h3 {
+            font-size: 2.25rem;
+            margin-top: 10px;
+            margin-bottom: 20px;
+        }
+        .service-detail-content p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+        }
+        .specs-list {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            border-top: 1px solid var(--border-color);
+            padding-top: 30px;
+        }
+        .spec-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--primary);
+        }
+        .spec-val {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--black);
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <img src="images/logo.png" alt="Tint Tone Designs Logo">
+            </a>
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html">About Us</a>
+                <a href="services.html" class="active">Services</a>
+                <a href="gallery.html">Gallery</a>
+                <a href="clients.html">Clients</a>
+                <a href="contact.html">Contact Us</a>
+            </nav>
+            <div class="nav-cta">
+                <a href="contact.html" class="btn btn-primary">Get a Quote</a>
+            </div>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Page Header -->
+    <section class="section about-hero bg-dark">
+        <div class="container animate-fade-in">
+            <span class="section-tag" style="color: var(--primary);">What We Offer</span>
+            <h1 style="font-size: 3.5rem; margin-top: 10px; margin-bottom: 20px; color: var(--text-light);">Retail Merchandising Services</h1>
+            <p style="font-size: 1.2rem; color: var(--text-light-muted); max-width: 800px;">Explore our comprehensive range of high-definition printing, precision sign making, and site installation solutions.</p>
+        </div>
+    </section>
+
+    <!-- Services Detail Section -->
+    <section class="section services-detail-section">
+        <div class="container">
+            
+            <!-- Service 1: Window Displays -->
+            <div id="window-displays" class="service-detail-item animate-fade-in">
+                <div class="service-detail-img">
+                    <img src="images/TINT TONE  PORTFOLIO-04.jpg" alt="Window Display Branding Mochi and Metro Shoes">
+                </div>
+                <div class="service-detail-content">
+                    <span class="section-tag">First Impression</span>
+                    <h3>Window Display Branding</h3>
+                    <p>Captivate shoppers and draw foot traffic into your retail environment. We specialize in high-end seasonal storefront windows, utilizing multi-layered MDF frames, acrylic lettering, raised flooring, customized vinyl textures, and unique visual merchandising props that tell a brand story.</p>
+                    <div class="specs-list">
+                        <div>
+                            <div class="spec-label">Common Materials</div>
+                            <div class="spec-val">MDF, Acrylic, Sunboard, Premium Vinyl</div>
+                        </div>
+                        <div>
+                            <div class="spec-label">Ideal For</div>
+                            <div class="spec-val">Footwear, Apparel & Boutique Stores</div>
+                        </div>
+                        <div>
+                            <div class="spec-label">Execution Time</div>
+                            <div class="spec-val">3 - 5 Working Days</div>
+                        </div>
+                        <div>
+                            <div class="spec-label">Key Highlight</div>
+                            <div class="spec-val">Custom Prop Fabrication</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 2: Signage & Storefront Displays -->
+            <div id="store-signage" class="service-detail-item animate-fade-in">
+                <div class="service-detail-img">
+                    <img src="images/TINT TONE  PORTFOLIO-05.jpg" alt="Storefront Signage and Facade Branding - Snitch">
+                </div>
+                <div class="service-detail-content">
+                    <span class="section-tag">Brand Facades</span>
+                    <h3>Signage & Storefront Displays</h3>
+                    <p>Make your brand stand out from a distance. We manufacture and install commercial-grade storefront signs, facade claddings, and structural displays. Our signage solutions are engineered to withstand ambient conditions while projecting an ultra-premium aesthetic with bright, uniform illumination.</p>
+                    <div class="specs-list">
+                        <div>
+                            <div class="spec-label">Sign Types</div>
+                            <div class="spec-val">Frontlit, Backlit, 3D channel, Neon</div>
+                        </div>
+                        <div>
+                            <div class="spec-label">Base Structures</div>
+                            <div class="spec-val">Aluminium Composite Panel (ACP), MS Frame</div>
+                        </div>
+                        <div>
+                            <div class="spec-label">Lighting</div>
+                            <div class="spec-val">OSRAM LED modules, waterproof drivers</div>
+                        </div>
+                        <div>
+                            <div class="spec-label">Compliance</div>
+                            <div class="spec-val">Fire-retardant cable wiring & mounts</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 3: Interactive & Selfie Displays -->
+            <div id="interactive-selfie" class="service-detail-item animate-fade-in">
+                <div class="service-detail-img">
+                    <img src="images/TINT TONE  PORTFOLIO-06.jpg" alt="Interactive Selfie Display Mockup Crocs">
+                </div>
+                <div class="service-detail-content">
+                    <span class="section-tag">Customer Engagement</span>
+                    <h3>Interactive & Selfie Displays</h3>
+                    <p>Drive social media engagement directly from your store. We design and build photogenic interactive spaces, themed selfie setups, brand mascot backdrops, and promotional selfie mirrors. These experiential installations encourage customer interaction, building organic digital impressions.</p>
+                    <div class="specs-list">
+                        <div>
+                            <div class="spec-label">Features</div>
+                            <div class="spec-val">Integrated lighting, dimensional props</div>
+                        </div>
+                        <div>
+                            <div class="spec-label">Mobility</div>
+                            <div class="spec-val">Modular, easy to relocate & install</div>
+                        </div>
+                        <div>
+                            <div class="spec-label">Target Channels</div>
+                            <div class="spec-val">Instagram, TikTok & Snapchat campaigns</div>
+                        </div>
+                        <div>
+                            <div class="spec-label">Customization</div>
+                            <div class="spec-val">Bespoke sizing to fit any store corner</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 4: Signage Logos & Illuminated Branding -->
+            <div id="signage-logos" class="service-detail-item animate-fade-in">
+                <div class="service-detail-img">
+                    <img src="images/TINT TONE  PORTFOLIO-07.jpg" alt="Custom Illuminated Branding Logos Wow Momo, Speedo">
+                </div>
+                <div class="service-detail-content">
+                    <span class="section-tag">Identity Fabrication</span>
+                    <h3>Signage Logos & Illuminated Branding</h3>
+                    <p>Translate your logo into a physical mark. We specialize in building small-to-medium 3D illuminated letters, neon logos, edge-lit panels, and solid acrylic symbols for in-store checkout counters, feature walls, and office receptions. We use high-precision CNC routers to replicate logos with complete fidelity.</p>
+                    <div class="specs-list">
+                        <div>
+                            <div class="spec-label">Letter Height</div>
+                            <div class="spec-val">5 inches to 5 feet</div>
+                        </div>
+                        <div>
+                            <div class="spec-label">Illumination Style</div>
+                            <div class="spec-val">Halo-lit, Face-lit, Edge-lit</div>
+                        </div>
+                        <div>
+                            <div class="spec-label">Material Options</div>
+                            <div class="spec-val">Acrylic, Brass, Stainless Steel, Wood</div>
+                        </div>
+                        <div>
+                            <div class="spec-label">Power Options</div>
+                            <div class="spec-val">Low-voltage 12V DC systems</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 5: Backlit Fabric Prints -->
+            <div id="backlit-fabric" class="service-detail-item animate-fade-in">
+                <div class="service-detail-img">
+                    <img src="images/TINT TONE  PORTFOLIO-08.jpg" alt="Backlit Fabric Lightbox Print Speedo">
+                </div>
+                <div class="service-detail-content">
+                    <span class="section-tag">Seamless Brilliance</span>
+                    <h3>Backlit Fabric Prints (SEG Lightboxes)</h3>
+                    <p>Upgrade from traditional sunboard graphics to premium fabric lightboxes. Silicone Edge Graphics (SEG) use high-resolution dye-sublimation or UV print on stretch polyester fabric, locked into thin aluminum channels. This provides a completely borderless, glare-free, and upscale canvas that is easy to replace.</p>
+                    <div class="specs-list">
+                        <div>
+                            <div class="spec-label">Print Technology</div>
+                            <div class="spec-val">Dye-Sublimation, Direct UV printing</div>
+                        </div>
+                        <div>
+                            <div class="spec-label">Fabric Material</div>
+                            <div class="spec-val">German Premium Knit Stretch Polyester</div>
+                        </div>
+                        <div>
+                            <div class="spec-label">Frame Profile</div>
+                            <div class="spec-val">15mm to 120mm aluminium extrusions</div>
+                        </div>
+                        <div>
+                            <div class="spec-label">Graphic Replacement</div>
+                            <div class="spec-val">User-swappable in 5 minutes (no tools)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 6: Flex & Fabric Mall Barricades -->
+            <div id="fabric-barricades" class="service-detail-item animate-fade-in">
+                <div class="service-detail-img">
+                    <img src="images/TINT TONE  PORTFOLIO-09.jpg" alt="Mall Storefront Hoardings and Barricades - Snitch / Third Wave Coffee">
+                </div>
+                <div class="service-detail-content">
+                    <span class="section-tag">Pre-Launch Buzz</span>
+                    <h3>Flex & Fabric Mall Barricades</h3>
+                    <p>Turn a dark construction site into a major marketing billboard. We build sturdy wooden/MS frames and wrap them with high-resolution matte flex or fabric graphics. We manage everything from site measurements and engineering approvals to overnight delivery and clean site handbacks.</p>
+                    <div class="specs-list">
+                        <div>
+                            <div class="spec-label">Structure</div>
+                            <div class="spec-val">Plywood boarding, MS square pipes</div>
+                        </div>
+                        <div>
+                            <div class="spec-label">Finishing</div>
+                            <div class="spec-val">Blackout matte flex (zero reflection)</div>
+                        </div>
+                        <div>
+                            <div class="spec-label">Mall Compliance</div>
+                            <div class="spec-val">Fire-retardant media, structural certificates</div>
+                        </div>
+                        <div>
+                            <div class="spec-label">Deployment</div>
+                            <div class="spec-val">100% overnight (10 PM - 6 AM)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Service 7: Vinyl Branding -->
+            <div id="vinyl-branding" class="service-detail-item animate-fade-in">
+                <div class="service-detail-img">
+                    <img src="images/TINT TONE  PORTFOLIO-10.jpg" alt="Vinyl In-Store Wall Branding Nykaa Mochi">
+                </div>
+                <div class="service-detail-content">
+                    <span class="section-tag">Graphic Decals</span>
+                    <h3>Vinyl Wall & In-Store Branding</h3>
+                    <p>Add vibrancy and branding detail to every flat surface. We offer high-precision plotter-cut vinyl lettering, frosted films for office glass doors, floor decals for navigation, and seamless full-wall vinyl print murals. Our vinyls are laminated to protect against scratches, fading, and peeling.</p>
+                    <div class="specs-list">
+                        <div>
+                            <div class="spec-label">Vinyl Types</div>
+                            <div class="spec-val">Eco-solvent, Latex print, Frosted, Oneway vision</div>
+                        </div>
+                        <div>
+                            <div class="spec-label">Lamination</div>
+                            <div class="spec-val">Matte, Gloss, Sparkle, Floor-laminate</div>
+                        </div>
+                        <div>
+                            <div class="spec-label">Applications</div>
+                            <div class="spec-val">Walls, glass, pillars, cash counters</div>
+                        </div>
+                        <div>
+                            <div class="spec-label">Durability</div>
+                            <div class="spec-val">3 - 5 Years (indoor, zero peeling)</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Call to Action Section -->
+    <section class="section bg-dark cta-section">
+        <div class="container animate-fade-in">
+            <div class="cta-content">
+                <span class="section-tag" style="color: var(--primary);">Request consultation</span>
+                <h2 style="margin-top: 10px;">Discuss Your Visual Branding Campaign</h2>
+                <p>From single flagship boutique signage to national multi-store promotional print campaigns, we deliver outstanding results on tight schedules. Let's build together.</p>
+                <div class="cta-btns">
+                    <a href="contact.html" class="btn btn-primary">Start a Project</a>
+                    <a href="https://wa.me/918939999445" target="_blank" class="btn btn-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"></path></svg>
+                        WhatsApp Chat
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col footer-col-logo">
+                    <img src="images/logo.png" alt="Tint Tone Designs Logo">
+                    <p style="margin-top: 15px;">Transforming spaces and elevating retail brands across India with state-of-the-art print production, signage craftsmanship, and visual merchandising solutions.</p>
+                </div>
+                <div class="footer-col">
+                    <h3>Our Services</h3>
+                    <ul class="footer-links">
+                        <li><a href="services.html#window-displays">Window Displays</a></li>
+                        <li><a href="services.html#store-signage">Signage & Displays</a></li>
+                        <li><a href="services.html#interactive-selfie">Selfie Displays</a></li>
+                        <li><a href="services.html#backlit-fabric">Backlit Fabric Prints</a></li>
+                        <li><a href="services.html#fabric-barricades">Flex & Fabric Boards</a></li>
+                        <li><a href="services.html#vinyl-branding">Vinyl Branding</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="services.html">Services</a></li>
+                        <li><a href="gallery.html">Gallery</a></li>
+                        <li><a href="clients.html">Clients</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Info</h3>
+                    <div class="footer-contact-info">
+                        <div class="footer-contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
+                            <span>+91 89399 99445</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            <span>tinttoned@gmail.com</span>
+                        </div>
+                        <div class="footer-contact-item">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+                            <span>Chennai, Tamil Nadu, India<br><span style="font-size: 0.8rem; opacity: 0.7;">PAN India Execution</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; <span id="currentYear"></span> Tint Tone Designs. All Rights Reserved. Crafted for retail excellence.</p>
+                <div class="footer-bottom-links">
+                    <a href="#">Privacy Policy</a>
+                    <a href="#">Terms & Conditions</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
