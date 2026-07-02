@@ -18,7 +18,21 @@
             <nav class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="about.html">About Us</a>
-                <a href="services.html">Services</a>
+                <div class="nav-item-dropdown">
+                    <a href="services.html" class="dropdown-toggle">Services <span class="arrow">&#9662;</span></a>
+                    <div class="dropdown-menu">
+                        <a href="service-detail.html?service=acp_singage">ACP Signage</a>
+                        <a href="service-detail.html?service=acrylic_signage">Acrylic Signage Letters</a>
+                        <a href="service-detail.html?service=canopy">Canopy Printing</a>
+                        <a href="service-detail.html?service=customised">Customised Wallpaper</a>
+                        <a href="service-detail.html?service=flex_printing">Flex Printing</a>
+                        <a href="service-detail.html?service=outdoor_hoarding">Outdoor Hoarding</a>
+                        <a href="service-detail.html?service=sun_board">Sun Board Printing</a>
+                        <a href="service-detail.html?service=uv_acrylic">UV Acrylic Printing</a>
+                        <a href="service-detail.html?service=uv_backlit_fabric">UV Backlit Fabric Print</a>
+                        <a href="service-detail.html?service=vinyl">Vinyl Printing</a>
+                    </div>
+                </div>
                 <a href="gallery.html" class="active">Gallery</a>
                 <a href="clients.html">Clients</a>
                 <a href="contact.html">Contact Us</a>
@@ -45,85 +59,8 @@
 
     <!-- Gallery Section -->
     <section class="section">
-        <div class="container">
-            
-            <!-- Filters -->
-            <div class="gallery-filter animate-fade-in">
-                <button class="filter-btn active" data-filter="all">All Projects</button>
-                <button class="filter-btn" data-filter="window">Window Displays</button>
-                <button class="filter-btn" data-filter="signage">Signage & Logos</button>
-                <button class="filter-btn" data-filter="selfie">Selfie Displays</button>
-                <button class="filter-btn" data-filter="backlit">Fabric Lightboxes</button>
-                <button class="filter-btn" data-filter="barricade">Mall Barricades</button>
-                <button class="filter-btn" data-filter="vinyl">Vinyl Branding</button>
-            </div>
-
-            <!-- Grid -->
-            <div class="gallery-grid animate-fade-in">
-                <!-- Item 1: Window Display -->
-                <div class="gallery-item" data-category="window" data-src="images/TINT TONE  PORTFOLIO-04.jpg" data-caption="Window Display - Mochi & Metro Storefronts">
-                    <img src="images/TINT TONE  PORTFOLIO-04.jpg" alt="Window Display - Mochi & Metro Storefronts">
-                    <div class="gallery-item-overlay">
-                        <h4>Window Display</h4>
-                        <span>Mochi & Metro Shoes</span>
-                    </div>
-                </div>
-
-                <!-- Item 2: Signage (Snitch) -->
-                <div class="gallery-item" data-category="signage" data-src="images/TINT TONE  PORTFOLIO-05.jpg" data-caption="Storefront Signage & Facade Branding - Snitch">
-                    <img src="images/TINT TONE  PORTFOLIO-05.jpg" alt="Storefront Signage & Facade Branding - Snitch">
-                    <div class="gallery-item-overlay">
-                        <h4>Signage & Display</h4>
-                        <span>Snitch Retail Store</span>
-                    </div>
-                </div>
-
-                <!-- Item 3: Selfie Displays (Crocs) -->
-                <div class="gallery-item" data-category="selfie" data-src="images/TINT TONE  PORTFOLIO-06.jpg" data-caption="Interactive Selfie Display Setup - Crocs Store">
-                    <img src="images/TINT TONE  PORTFOLIO-06.jpg" alt="Interactive Selfie Display Setup - Crocs Store">
-                    <div class="gallery-item-overlay">
-                        <h4>Selfie Display Setup</h4>
-                        <span>Crocs Interactive In-Store</span>
-                    </div>
-                </div>
-
-                <!-- Item 4: Signage Logos -->
-                <div class="gallery-item" data-category="signage" data-src="images/TINT TONE  PORTFOLIO-07.jpg" data-caption="Signage Logo & Illuminated Branding - Wow! Momo, Speedo, Meena Bazaar">
-                    <img src="images/TINT TONE  PORTFOLIO-07.jpg" alt="Signage Logo & Illuminated Branding - Wow! Momo, Speedo, Meena Bazaar">
-                    <div class="gallery-item-overlay">
-                        <h4>Illuminated Logos</h4>
-                        <span>Various Retail Brands</span>
-                    </div>
-                </div>
-
-                <!-- Item 5: Backlit Fabric Prints -->
-                <div class="gallery-item" data-category="backlit" data-src="images/TINT TONE  PORTFOLIO-08.jpg" data-caption="Backlit Fabric Lightboxes - Speedo In-Store Displays">
-                    <img src="images/TINT TONE  PORTFOLIO-08.jpg" alt="Backlit Fabric Lightboxes - Speedo In-Store Displays">
-                    <div class="gallery-item-overlay">
-                        <h4>Backlit Fabric Print</h4>
-                        <span>Speedo Retail Outlets</span>
-                    </div>
-                </div>
-
-                <!-- Item 6: Mall Barricades -->
-                <div class="gallery-item" data-category="barricade" data-src="images/TINT TONE  PORTFOLIO-09.jpg" data-caption="Flex & Fabric Mall Barricades - Snitch & Third Wave Coffee">
-                    <img src="images/TINT TONE  PORTFOLIO-09.jpg" alt="Flex & Fabric Mall Barricades - Snitch & Third Wave Coffee">
-                    <div class="gallery-item-overlay">
-                        <h4>Mall Barricades</h4>
-                        <span>Third Wave Coffee & Snitch</span>
-                    </div>
-                </div>
-
-                <!-- Item 7: Vinyl Branding -->
-                <div class="gallery-item" data-category="vinyl" data-src="images/TINT TONE  PORTFOLIO-10.jpg" data-caption="In-Store Vinyl Wall & Column Branding - Nykaa & Mochi">
-                    <img src="images/TINT TONE  PORTFOLIO-10.jpg" alt="In-Store Vinyl Wall & Column Branding - Nykaa & Mochi">
-                    <div class="gallery-item-overlay">
-                        <h4>Vinyl Wall Branding</h4>
-                        <span>Nykaa & Mochi Storefronts</span>
-                    </div>
-                </div>
-            </div>
-
+        <div class="container" id="gallery-container">
+            <!-- Dynamically populated categories and grids -->
         </div>
     </section>
 
@@ -214,6 +151,7 @@
         </div>
     </footer>
 
+    <script src="js/site-data.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

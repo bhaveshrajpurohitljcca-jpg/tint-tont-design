@@ -282,6 +282,77 @@ button, input, textarea {
     width: 100%;
 }
 
+/* Dropdown Menu Styles */
+.nav-item-dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer;
+}
+
+.dropdown-toggle .arrow {
+    font-size: 0.75rem;
+    transition: transform var(--transition);
+}
+
+.nav-item-dropdown:hover .dropdown-toggle .arrow {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(15px);
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(10px);
+    min-width: 240px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+    border-radius: var(--radius-md);
+    padding: 12px 0;
+    z-index: 1000;
+    border: 1px solid var(--border-color);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+    pointer-events: none;
+}
+
+.dropdown-menu a {
+    color: var(--text-muted);
+    padding: 10px 24px;
+    display: block;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.dropdown-menu a::after {
+    display: none !important; /* Disable the underline animation for dropdown links */
+}
+
+.dropdown-menu a:hover {
+    color: var(--primary);
+    background-color: var(--section-bg);
+    padding-left: 30px;
+}
+
+/* Show Dropdown on Hover for Desktop */
+@media (min-width: 993px) {
+    .nav-item-dropdown:hover .dropdown-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateX(-50%) translateY(0);
+        pointer-events: auto;
+    }
+}
+
 .nav-cta {
     display: flex;
     align-items: center;
@@ -333,6 +404,60 @@ button, input, textarea {
 
     .nav-cta {
         display: none;
+    }
+    
+    /* Mobile Dropdown Styling */
+    .nav-item-dropdown {
+        width: 100%;
+    }
+    
+    .nav-item-dropdown .dropdown-toggle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+        padding: 6px 0;
+    }
+
+    .nav-item-dropdown .dropdown-toggle .arrow {
+        transition: transform 0.3s ease;
+    }
+
+    .nav-item-dropdown.active .dropdown-toggle .arrow {
+        transform: rotate(180deg);
+    }
+
+    .dropdown-menu {
+        display: none;
+        position: static;
+        min-width: 100%;
+        box-shadow: none;
+        border: none;
+        border-left: 2px solid var(--border-color);
+        background: transparent;
+        backdrop-filter: none;
+        transform: none;
+        opacity: 1;
+        visibility: visible;
+        padding: 5px 0 5px 15px;
+        margin-top: 5px;
+        transition: none;
+        pointer-events: auto;
+    }
+    
+    .dropdown-menu.active {
+        display: block;
+    }
+
+    .dropdown-menu a {
+        padding: 8px 10px;
+        color: var(--text-muted);
+    }
+    
+    .dropdown-menu a:hover {
+        padding-left: 15px;
+        color: var(--primary);
+        background: transparent;
     }
     
     .menu-toggle.active span:nth-child(1) {
@@ -1039,8 +1164,8 @@ button, input, textarea {
 
 .vm-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 60px;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 40px;
 }
 
 @media (max-width: 992px) {

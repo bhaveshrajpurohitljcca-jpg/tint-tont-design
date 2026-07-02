@@ -54,7 +54,21 @@
             <nav class="nav-links">
                 <a href="index.html">Home</a>
                 <a href="about.html">About Us</a>
-                <a href="services.html">Services</a>
+                <div class="nav-item-dropdown">
+                    <a href="services.html" class="dropdown-toggle">Services <span class="arrow">&#9662;</span></a>
+                    <div class="dropdown-menu">
+                        <a href="service-detail.html?service=acp_singage">ACP Signage</a>
+                        <a href="service-detail.html?service=acrylic_signage">Acrylic Signage Letters</a>
+                        <a href="service-detail.html?service=canopy">Canopy Printing</a>
+                        <a href="service-detail.html?service=customised">Customised Wallpaper</a>
+                        <a href="service-detail.html?service=flex_printing">Flex Printing</a>
+                        <a href="service-detail.html?service=outdoor_hoarding">Outdoor Hoarding</a>
+                        <a href="service-detail.html?service=sun_board">Sun Board Printing</a>
+                        <a href="service-detail.html?service=uv_acrylic">UV Acrylic Printing</a>
+                        <a href="service-detail.html?service=uv_backlit_fabric">UV Backlit Fabric Print</a>
+                        <a href="service-detail.html?service=vinyl">Vinyl Printing</a>
+                    </div>
+                </div>
                 <a href="gallery.html">Gallery</a>
                 <a href="clients.html" class="active">Clients</a>
                 <a href="contact.html">Contact Us</a>
@@ -90,8 +104,9 @@
                     <p>Maintaining absolute brand guidelines across 100+ stores in multiple Indian cities is a significant challenge. Tint Tone Designs partners with retail operations and marketing departments to serve as their single point of contact for nationwide printing and signage rollouts.</p>
                     <p>Whether it is a fast-growing brand like <strong>Snitch</strong>, an established giant like <strong>Mochi</strong>, or an international cosmetic pioneer like <strong>Nykaa</strong>, we ensure that colors, fabrics, and signs are identical in every mall, high street, and airport location.</p>
                 </div>
-                <div class="client-intro-img">
-                    <img src="images/TINT TONE  PORTFOLIO-03.jpg" alt="Tint Tone Designs Client Logos Page Preview">
+                <div style="background-color: var(--black); color: var(--text-light); padding: 40px; border-radius: var(--radius-md); border: 1px solid var(--border-color); box-shadow: var(--shadow-lg); display: flex; flex-direction: column; justify-content: center; height: 100%;">
+                    <span style="font-size: 0.8rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 15px; display: block;">Our Commitment</span>
+                    <p style="font-size: 1.1rem; line-height: 1.6; color: var(--text-light-muted); margin: 0; font-style: italic; font-weight: 400;">"Our clients' trust is the foundation of our success. From digital printing and UV printing to fabrication services, we are committed to delivering quality products, creative solutions, and timely service for every customer."</p>
                 </div>
             </div>
 
@@ -102,19 +117,8 @@
                 <p>Leading retail networks that trust Tint Tone Designs for storefront visual excellence.</p>
             </div>
 
-            <div class="clients-grid animate-fade-in">
-                <div class="client-card"><span>SNITCH</span></div>
-                <div class="client-card"><span>CROCS</span></div>
-                <div class="client-card"><span>MOCHI</span></div>
-                <div class="client-card"><span>METRO</span></div>
-                <div class="client-card"><span>NYKAA</span></div>
-                <div class="client-card"><span>SPEEDO</span></div>
-                <div class="client-card"><span>WOW! MOMO</span></div>
-                <div class="client-card"><span>MEENA BAZAAR</span></div>
-                <div class="client-card"><span>THIRD WAVE COFFEE</span></div>
-                <div class="client-card"><span>LIFESTYLE</span></div>
-                <div class="client-card"><span>METRO SHOES</span></div>
-                <div class="client-card"><span>MOCHI SHOES</span></div>
+            <div class="clients-grid animate-fade-in" id="clients-logos-grid">
+                <!-- Dynamically populated client logo cards -->
             </div>
 
         </div>
@@ -196,6 +200,7 @@
         </div>
     </footer>
 
+    <script src="js/site-data.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>

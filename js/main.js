@@ -11,22 +11,46 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('scroll', handleScroll);
     handleScroll(); // Init on load
 
-    // 2. Mobile Menu Toggle
+    // 2. Mobile Menu Toggle & Dropdown Handling
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.querySelector('.nav-links');
+    const dropdownParent = document.querySelector('.nav-item-dropdown');
+    const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
     
     if (menuToggle && navLinks) {
         menuToggle.addEventListener('click', () => {
             menuToggle.classList.toggle('active');
             navLinks.classList.toggle('active');
+            
+            // Reset dropdown when mobile menu closes
+            if (!navLinks.classList.contains('active')) {
+                if (dropdownParent) dropdownParent.classList.remove('active');
+                if (dropdownMenu) dropdownMenu.classList.remove('active');
+            }
         });
 
-        // Close mobile menu when clicking a link
+        // Close mobile menu when clicking a link (except dropdown toggle on mobile)
         navLinks.querySelectorAll('a').forEach(link => {
-            link.addEventListener('click', () => {
+            link.addEventListener('click', (e) => {
+                if (link.classList.contains('dropdown-toggle') && window.innerWidth <= 992) {
+                    return; // Don't close menu if clicking toggle arrow/link on mobile
+                }
                 menuToggle.classList.remove('active');
                 navLinks.classList.remove('active');
+                if (dropdownParent) dropdownParent.classList.remove('active');
+                if (dropdownMenu) dropdownMenu.classList.remove('active');
             });
+        });
+    }
+
+    if (dropdownToggle && dropdownParent && dropdownMenu) {
+        dropdownToggle.addEventListener('click', (e) => {
+            if (window.innerWidth <= 992) {
+                e.preventDefault(); // Stop navigating to services.html on mobile click
+                dropdownParent.classList.toggle('active');
+                dropdownMenu.classList.toggle('active');
+            }
         });
     }
 
@@ -37,13 +61,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
     navItems.forEach(item => {
         const href = item.getAttribute('href');
-        if (currentPath.endsWith(href) && href !== 'index.html') {
+        if (currentPath.endsWith(href) && href !== 'index.html' && href !== 'services.html') {
             item.classList.add('active');
             matched = true;
         } else {
             item.classList.remove('active');
         }
     });
+
+    // Special handling for services and service detail pages
+    if (currentPath.includes('services.html') || currentPath.includes('service-detail.html')) {
+        if (dropdownToggle) dropdownToggle.classList.add('active');
+        matched = true;
+    }
 
     // Default to Home if no match
     if (!matched && navItems.length > 0) {
@@ -55,32 +85,173 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // 4. Scroll Animations (Fade-in on scroll)
-    const animateElements = document.querySelectorAll('.animate-fade-in');
-    if ('IntersectionObserver' in window && animateElements.length > 0) {
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('appear');
-                    observer.unobserve(entry.target); // Animates once
-                }
+    const initScrollAnimations = () => {
+        const animateElements = document.querySelectorAll('.animate-fade-in');
+        if ('IntersectionObserver' in window && animateElements.length > 0) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('appear');
+                        observer.unobserve(entry.target); // Animates once
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
             });
-        }, {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        });
 
-        animateElements.forEach(el => observer.observe(el));
-    } else {
-        // Fallback for older browsers
-        animateElements.forEach(el => el.classList.add('appear'));
+            animateElements.forEach(el => observer.observe(el));
+        } else {
+            // Fallback for older browsers
+            animateElements.forEach(el => el.classList.add('appear'));
+        }
+    };
+    initScrollAnimations(); // Run initially
+
+    // 5. Dynamic Page Renderers (Run before Lightbox setup)
+    
+    // 5a. Service Detail Page Renderer
+    if (currentPath.includes('service-detail.html')) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const serviceKey = urlParams.get('service');
+        const serviceData = SITE_DATA.services[serviceKey];
+        
+        if (serviceData) {
+            // Render service title
+            const titleElements = document.querySelectorAll('.dynamic-service-title');
+            titleElements.forEach(el => { el.textContent = serviceData.title; });
+            
+            // Render service description
+            const descEl = document.getElementById('service-description');
+            if (descEl) descEl.textContent = serviceData.description;
+            
+            // Render image grid
+            const gridEl = document.getElementById('service-images-grid');
+            if (gridEl && serviceData.images) {
+                gridEl.innerHTML = '';
+                serviceData.images.forEach(imgSrc => {
+                    const imgItem = document.createElement('div');
+                    imgItem.className = 'gallery-item animate-fade-in';
+                    imgItem.setAttribute('data-src', imgSrc);
+                    imgItem.setAttribute('data-caption', serviceData.title + ' Installation');
+                    imgItem.innerHTML = `
+                        <img src="${imgSrc}" alt="${serviceData.title} Installation">
+                        <div class="gallery-item-overlay">
+                            <h4>${serviceData.title}</h4>
+                            <span>Installation View</span>
+                        </div>
+                    `;
+                    gridEl.appendChild(imgItem);
+                });
+            }
+        } else {
+            // If service not found, redirect to general services page
+            window.location.href = 'services.html';
+        }
     }
 
-    // 5. Gallery Lightbox & Filtering Functionality
-    const galleryItems = document.querySelectorAll('.gallery-item');
+    // 5b. Gallery Page Renderer
+    if (currentPath.includes('gallery.html')) {
+        const containerEl = document.getElementById('gallery-container');
+        if (containerEl) {
+            containerEl.innerHTML = ''; // clear default placeholder content
+            
+            // Loop through all gallery categories
+            Object.keys(SITE_DATA.gallery).forEach(key => {
+                const catData = SITE_DATA.gallery[key];
+                if (catData.images && catData.images.length > 0) {
+                    const sectionEl = document.createElement('div');
+                    sectionEl.className = 'gallery-category-section animate-fade-in';
+                    sectionEl.style.marginBottom = '80px';
+                    
+                    let descHTML = '';
+                    if (catData.description) {
+                        descHTML = `<p class="category-description" style="color: var(--text-muted); font-size: 1.05rem; max-width: 800px; margin-bottom: 30px; line-height: 1.6; border-left: 3px solid var(--primary); padding-left: 15px;">${catData.description}</p>`;
+                    }
+                    
+                    sectionEl.innerHTML = `
+                        <div class="category-header" style="margin-bottom: 25px;">
+                            <h3 style="font-size: 1.8rem; font-weight: 700; color: var(--black); margin-bottom: 10px;">${catData.title}</h3>
+                            ${descHTML}
+                        </div>
+                        <div class="gallery-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 30px;">
+                        </div>
+                    `;
+                    
+                    const gridEl = sectionEl.querySelector('.gallery-grid');
+                    catData.images.forEach(imgSrc => {
+                        const imgItem = document.createElement('div');
+                        imgItem.className = 'gallery-item';
+                        imgItem.setAttribute('data-src', imgSrc);
+                        imgItem.setAttribute('data-caption', catData.title + ' - Tint Tone Designs');
+                        imgItem.innerHTML = `
+                            <img src="${imgSrc}" alt="${catData.title}">
+                            <div class="gallery-item-overlay">
+                                <h4>${catData.title}</h4>
+                                <span>Portfolio View</span>
+                            </div>
+                        `;
+                        gridEl.appendChild(imgItem);
+                    });
+                    
+                    containerEl.appendChild(sectionEl);
+                }
+            });
+        }
+    }
+
+    // 5c. Clients Page Renderer
+    if (currentPath.includes('clients.html')) {
+        const gridEl = document.getElementById('clients-logos-grid');
+        if (gridEl && SITE_DATA.clients) {
+            gridEl.innerHTML = '';
+            SITE_DATA.clients.forEach(imgSrc => {
+                const cardEl = document.createElement('div');
+                cardEl.className = 'client-card animate-fade-in';
+                cardEl.style.display = 'flex';
+                cardEl.style.justifyContent = 'center';
+                cardEl.style.alignItems = 'center';
+                cardEl.style.padding = '20px';
+                cardEl.style.height = '120px';
+                cardEl.style.backgroundColor = 'var(--light-bg)';
+                cardEl.style.border = '1px solid var(--border-color)';
+                cardEl.style.borderRadius = 'var(--radius-sm)';
+                cardEl.style.transition = 'var(--transition)';
+                cardEl.innerHTML = `<img src="${imgSrc}" alt="Client Logo" style="max-height: 100%; max-width: 100%; object-fit: contain; filter: grayscale(100%); opacity: 0.7; transition: var(--transition);">`;
+                
+                // Hover effect to remove grayscale
+                cardEl.addEventListener('mouseenter', () => {
+                    const img = cardEl.querySelector('img');
+                    if (img) {
+                        img.style.filter = 'none';
+                        img.style.opacity = '1';
+                    }
+                    cardEl.style.boxShadow = 'var(--shadow-md)';
+                    cardEl.style.transform = 'translateY(-2px)';
+                });
+                
+                cardEl.addEventListener('mouseleave', () => {
+                    const img = cardEl.querySelector('img');
+                    if (img) {
+                        img.style.filter = 'grayscale(100%)';
+                        img.style.opacity = '0.7';
+                    }
+                    cardEl.style.boxShadow = 'none';
+                    cardEl.style.transform = 'none';
+                });
+                
+                gridEl.appendChild(cardEl);
+            });
+        }
+    }
+
+    // Re-run scroll animations check to capture dynamically created elements
+    initScrollAnimations();
+
+    // 6. Gallery Lightbox (Updated with event delegation for dynamic elements)
     const lightbox = document.getElementById('lightbox');
-    const filterButtons = document.querySelectorAll('.filter-btn');
     
-    if (lightbox && galleryItems.length > 0) {
+    if (lightbox) {
         const lightboxImg = lightbox.querySelector('.lightbox-img');
         const lightboxCaption = lightbox.querySelector('.lightbox-caption');
         const closeBtn = lightbox.querySelector('.lightbox-close');
@@ -93,6 +264,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Build list of currently visible images in the gallery
         const updateVisibleImages = () => {
             visibleImages = [];
+            const galleryItems = document.querySelectorAll('.gallery-item');
             galleryItems.forEach(item => {
                 if (window.getComputedStyle(item).display !== 'none') {
                     const imgEl = item.querySelector('img');
@@ -106,16 +278,16 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         };
 
-        // Attach click listeners to gallery items
-        galleryItems.forEach(item => {
-            item.addEventListener('click', () => {
+        // Attach click listener to parent/body using event delegation
+        document.addEventListener('click', (e) => {
+            const item = e.target.closest('.gallery-item');
+            if (item) {
                 updateVisibleImages();
-                // Find index of clicked item in the visible list
                 currentIndex = visibleImages.findIndex(img => img.element === item);
                 if (currentIndex !== -1) {
                     openLightbox();
                 }
-            });
+            }
         });
 
         const openLightbox = () => {
@@ -149,15 +321,17 @@ document.addEventListener('DOMContentLoaded', () => {
         };
 
         // Events
-        closeBtn.addEventListener('click', closeLightbox);
-        prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
-        nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
+        if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+        if (prevBtn) prevBtn.addEventListener('click', (e) => { e.stopPropagation(); showPrev(); });
+        if (nextBtn) nextBtn.addEventListener('click', (e) => { e.stopPropagation(); showNext(); });
         lightbox.addEventListener('click', closeLightbox);
         
-        lightboxImg.addEventListener('click', (e) => {
-            e.stopPropagation();
-            showNext();
-        });
+        if (lightboxImg) {
+            lightboxImg.addEventListener('click', (e) => {
+                e.stopPropagation();
+                showNext();
+            });
+        }
 
         // Keyboard support
         document.addEventListener('keydown', (e) => {
@@ -167,33 +341,9 @@ document.addEventListener('DOMContentLoaded', () => {
             if (e.key === 'ArrowLeft') showPrev();
             if (e.key === 'ArrowRight') showNext();
         });
-
-        // Initialize visible list
-        updateVisibleImages();
     }
 
-    // 5b. Category Filtering Logic
-    if (filterButtons.length > 0 && galleryItems.length > 0) {
-        filterButtons.forEach(btn => {
-            btn.addEventListener('click', () => {
-                filterButtons.forEach(b => b.classList.remove('active'));
-                btn.classList.add('active');
-                
-                const filterValue = btn.getAttribute('data-filter');
-                
-                galleryItems.forEach(item => {
-                    const category = item.getAttribute('data-category');
-                    if (filterValue === 'all' || category === filterValue) {
-                        item.style.display = 'block';
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-            });
-        });
-    }
-
-    // 6. Contact Form Interactive Handler
+    // 7. Contact Form Interactive Handler
     const contactForm = document.getElementById('contactForm');
     const formStatus = document.getElementById('formStatus');
     
@@ -204,8 +354,6 @@ document.addEventListener('DOMContentLoaded', () => {
             // Validate fields
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
-            const phone = document.getElementById('phone').value.trim();
-            const service = document.getElementById('service').value;
             const message = document.getElementById('message').value.trim();
             
             if (!name || !email || !message) {
@@ -231,6 +379,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const showFormStatus = (msg, type) => {
         formStatus.textContent = msg;
         formStatus.className = 'form-status ' + type;
+        formStatus.style.display = 'block';
         
         // Auto fade out status after 5 seconds
         setTimeout(() => {
@@ -238,7 +387,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000);
     };
 
-    // 7. Dynamic Year in Footer
+    // 8. Dynamic Year in Footer
     const footerYear = document.getElementById('currentYear');
     if (footerYear) {
         footerYear.textContent = new Date().getFullYear();
